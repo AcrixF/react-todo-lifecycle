@@ -64,12 +64,14 @@ export default class Todo extends Component {
 
     markAsCompleted = (id) => {
         // Finding Task by Id
-        const  foundTask = this.state.items.find(task => task.id === id);
-
-        foundTask.completed = true;
+        const foundTask = this.state.items.map(task => {
+            if (task.id == id)
+                task.completed = true;
+            return task;
+        })
 
         this.setState({
-            items: [...this.state.items, ...foundTask]
+            items: [...foundTask]
         })
     };
 
